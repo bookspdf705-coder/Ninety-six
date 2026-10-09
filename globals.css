@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --glass-tint: 255, 255, 255;
+  --glass-edge: 255, 255, 255;
+  --shadow-color: 0, 0, 0;
+}
+
+html.dark {
+  color-scheme: dark;
+  --glass-tint: 22, 22, 24;
+  --glass-edge: 255, 255, 255;
+  --shadow-color: 0, 0, 0;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fbfbfd;
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+html.dark body {
+  background-color: #000000;
+  color: #f5f5f7;
+}
+
+::selection {
+  background: rgba(201, 162, 75, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(134, 134, 139, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+:focus-visible {
+  outline: 2px solid #c9a24b;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.glass-thick {
+  position: relative;
+  background: rgba(var(--glass-tint), 0.68);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  box-shadow:
+    0 1px 1px rgba(var(--shadow-color), 0.04),
+    0 18px 40px -12px rgba(var(--shadow-color), 0.22);
+}
+html.dark .glass-thick {
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.5),
+    0 18px 44px -12px rgba(0, 0, 0, 0.65);
+}
+
+.glass-card {
+  position: relative;
+  background: rgba(var(--glass-tint), 0.55);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow:
+    0 1px 1px rgba(var(--shadow-color), 0.03),
+    0 12px 30px -10px rgba(var(--shadow-color), 0.16);
+}
+html.dark .glass-card {
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.4),
+    0 12px 32px -10px rgba(0, 0, 0, 0.55);
+}
+
+.glass-thin {
+  position: relative;
+  background: rgba(var(--glass-tint), 0.4);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 4px 14px -6px rgba(var(--shadow-color), 0.14);
+}
+
+.glass-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--glass-edge), 0.55),
+    rgba(var(--glass-edge), 0.06) 28%,
+    rgba(var(--glass-edge), 0) 60%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+html.dark .glass-edge::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--glass-edge), 0.22),
+    rgba(var(--glass-edge), 0.03) 28%,
+    rgba(var(--glass-edge), 0) 60%
+  );
+}
+
+.glass-specular::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    120% 90% at 15% -10%,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+html.dark .glass-specular::before {
+  background: radial-gradient(
+    120% 90% at 15% -10%,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0) 55%
+  );
+  mix-blend-mode: soft-light;
+}
+
+.press {
+  transition: transform 100ms ease-out;
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+.chip-on-image {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  color: #fff;
+}
+
+.type-hero {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+.type-title {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.type-headline {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+.type-body {
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+.type-caption {
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.scroll-fade-top {
+  mask-image: linear-gradient(to bottom, transparent 0, black 20px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 20px);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass-thick,
+  .glass-card,
+  .glass-thin {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(var(--glass-tint), 0.96) !important;
+  }
+}
+
+/* Thin progress track whose in-flight state is indeterminate: we can't
+   measure upload bytes through supabase-js, so the active file shows a
+   sweeping highlight instead of a made-up percentage. */
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(260%);
+  }
+}
+.progress-indeterminate {
+  position: relative;
+  overflow: hidden;
+}
+.progress-indeterminate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(201, 162, 75, 0), #c9a24b, rgba(201, 162, 75, 0));
+  animation: progress-indeterminate 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
